@@ -1,13 +1,33 @@
-# Node build artifacts
-node_modules
-npm-debug.log
+# Based on gatsby-starter-default's .gitignore
+# https://github.com/gatsbyjs/gatsby-starter-default/blob/master/.gitignore
 
-# Local development
-*.env
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
 .env*
-*.dev
+
+# gatsby files
+.cache/
+
+# Mac files
 .DS_Store
 
-# Docker
-Dockerfile
-docker-compose.yml
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Local Netlify folder
+.netlify
+*copy.*
