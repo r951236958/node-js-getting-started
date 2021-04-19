@@ -3,7 +3,8 @@ node_modules
 npm-debug.log
 
 # Local development
-*.env*
+*.env
+.env*
 *.dev
 .DS_Store
 
