@@ -4,7 +4,7 @@
   "description": "A sample Node.js app using Express 4",
   "engines": {
     "node": ">14.x",
-    "npm": "17.6.1"
+    "npm": "7.6.1"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
