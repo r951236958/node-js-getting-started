@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
-require('./db/dbConnect')
+require('dotenv').config()
+// require('./db/db-connect')
 
 // const database = require('./database/db')
 const path = require('path')
@@ -14,28 +14,31 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-// mongoose.Promise = global.Promise
 
-// mongoose
-//   .connect(database.db, {
-//     keepAlive: true,
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(
-//     () => {
-//       console.log('Database connected sucessfully !')
-//     },
-//     (error) => {
-//       console.log('Database could not be connected : ' + error)
-//     }
-//   )
+const URI = process.env.MONGODB_URI
 
-// const connection = mongoose.connection
+mongoose.Promise = global.Promise
 
-// connection.once('open', function () {
-//   console.log('MongoDB connection established.')
-// })
+// use mongoose to connect this app to our database on mongoDB using the DB_URL (connection string)
+mongoose
+  .connect(URI, {
+    //   these are options to ensure that the connection is done properly
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log('Successfully connected to MongoDB Atlas!'))
+  .catch((error) => {
+    console.log('Unable to connect to MongoDB Atlas!')
+    console.log(error)
+  })
+
+const connection = mongoose.connection
+
+connection.once('open', () =>
+  console.log('MongoDB Database Extablished Successfully')
+)
 
 const userRoute = require('./routes/user.routes')
 const authRouter = require('./routes/auth.routes')
